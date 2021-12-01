@@ -1,6 +1,5 @@
-
+let random = null;
 const shifumi = ["pierre", "papier", "ciseau"];
-let random = Math.floor(Math.random() * shifumi.length);
 const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 const equalOrWin = document.getElementById("equalityOrWin");
@@ -8,13 +7,12 @@ let counterBot = 0;
 let counterPlayer = 0;
 
 
-
-
 document.getElementById("pierre").addEventListener('click', function () {
 
     player1.style.backgroundImage = "url(/assets/img/pierre.png)";
     player1.id = "imgPierre";
 
+    random = Math.floor(Math.random() * shifumi.length);
     player2.style.backgroundImage = "url(/assets/img/" + shifumi[random] + ".png)"
 
     victoryConditions();
@@ -26,6 +24,7 @@ document.getElementById("feuille").addEventListener('click', function () {
     player1.style.backgroundImage = "url(/assets/img/papier.png)";
     player1.id = "imgPapier";
 
+    random = Math.floor(Math.random() * shifumi.length);
     player2.style.backgroundImage = "url(/assets/img/" + shifumi[random] + ".png)"
 
     victoryConditions();
@@ -36,10 +35,21 @@ document.getElementById("ciseaux").addEventListener('click', function () {
     player1.style.backgroundImage = "url(/assets/img/ciseau.png)";
     player1.id = "imgCiseaux"
 
+    random = Math.floor(Math.random() * shifumi.length);
     player2.style.backgroundImage = "url(/assets/img/" + shifumi[random] + ".png)"
 
     victoryConditions();
     counter ();
+})
+
+document.getElementById("reset").addEventListener("click", function () {
+    player1.style.backgroundImage = "none";
+    player1.id = "player1";
+
+    player2.style.backgroundImage = "none";
+    equalOrWin.innerHTML = "";
+
+    victoryConditions();
 })
 
 function victoryConditions() {
@@ -93,12 +103,7 @@ function counter () {
     player.innerHTML = " Joueur nombre de victoire: " + counterPlayer;
 }
 
-document.getElementById("reset").addEventListener("click", function () {
-    player1.style.backgroundImage = "none";
-    player1.id = "player1";
-    player2.style.backgroundImage = "none";
-    equalOrWin.innerHTML = "";
-})
+
 
 
 
